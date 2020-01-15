@@ -1,12 +1,18 @@
-import React from "react"
+import React, {useState} from "react"
+import {map} from "lodash"
 
 const Todolist = () => {
+
+  const [tasks, setTasks] = useState([
+    "item 1",
+    "item 2",
+    "item 3",
+    "item 4",
+    "item 5",
+  ])
+
   return <ul>
-    <li>item 1</li>
-    <li>item 2</li>
-    <li>item 3</li>
-    <li>item 4</li>
-    <li>item 5</li>
+    {map(tasks, task => <li>{task}</li>)}
   </ul>
 }
 
