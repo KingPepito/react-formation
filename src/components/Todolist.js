@@ -1,19 +1,21 @@
 import React, {useState} from "react"
 import {map} from "lodash"
+import Input from "./Input";
 
 const Todolist = () => {
 
-  const [tasks, setTasks] = useState([
-    "item 1",
-    "item 2",
-    "item 3",
-    "item 4",
-    "item 5",
-  ])
+  const [tasks, setTasks] = useState([])
 
-  return <ul>
-    {map(tasks, task => <li>{task}</li>)}
-  </ul>
+  const addTask = newTask => setTasks([...tasks, newTask])
+
+  return <div>
+    <Input onSubmit={addTask}/>
+    {
+      tasks.length > 0 && <ul>
+        {map(tasks, task => <li>{task}</li>)}
+      </ul>
+    }
+  </div>
 }
 
 export default Todolist
