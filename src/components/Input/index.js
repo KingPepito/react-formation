@@ -1,4 +1,5 @@
 import React, {useRef} from "react"
+import "./Input.css"
 
 const Input = ({onSubmit}) => {
   // Prefer ref to id
