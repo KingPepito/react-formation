@@ -1,0 +1,12 @@
+.task-container{
+    display: flex;
+}
+
+.task-title {
+    margin: 8px;
+    cursor: pointer;
+}
+
+.task-title.completed {
+    text-decoration: line-through;
+}
