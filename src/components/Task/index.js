@@ -1,15 +1,14 @@
 import React from "react";
-import "./Task.css";
+import TaskContainer from "../Input/TaskContainer";
+import TaskTitle from "../Input/TaskTitle";
 
 const Task = ({complete, completed, id, title, remove}) => {
   const removeSelf = () => remove(id)
   const completeSelf = () => complete(id)
-  return <div className='task-container'>
-    <span className={`task-title ${completed && 'completed'}`} onClick={completeSelf}>
-      {title}
-    </span>
+  return <TaskContainer completed={completed} >
+    <TaskTitle onClick={completeSelf}>{title}</TaskTitle>
     <button onClick={removeSelf}>X</button>
-  </div>
+  </TaskContainer>
 }
 
 export default Task
