@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Todolist from "./components/Todolist";
+import Todolist from "./components/TodoList";
 import TodolistClass from "./components/TodolistClass";
 
 // Entry point

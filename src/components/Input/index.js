@@ -1,4 +1,9 @@
 import React, {useRef} from "react"
+import styled from "styled-components"
+
+const StyledInput = styled.input`
+  margin-bottom: 16px;
+`
 
 const Input = ({onSubmit}) => {
   // Prefer ref to id
@@ -12,7 +17,7 @@ const Input = ({onSubmit}) => {
     }
   }
 
-  return <input onKeyDown={onKeyDown} ref={inputEl}/>
+  return <StyledInput onKeyDown={onKeyDown} ref={inputEl}/>
 }
 
 export default Input
