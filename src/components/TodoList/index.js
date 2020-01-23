@@ -18,7 +18,7 @@ const Todolist = () => {
   // Destructure the useArray hook functions without parameter directly here
   const {clear} = tasks
   // Add side effect that is being executed when tasks is updated
-  useEffect(() => console.log('New state of tasks: ', tasks), [tasks])
+  // useEffect(() => console.log('New state of tasks: ', tasks), [tasks])
 
   const addTask = title => tasks.add(createTask(title))
 
@@ -31,6 +31,7 @@ const Todolist = () => {
           {...task}
           complete={() => tasks.replaceByIdAndValue(task.id, {...task, completed: !task.completed})}
           remove={() => tasks.removeById(task.id)}
+          key={task.id}
         />
       )
     }
