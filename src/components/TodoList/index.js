@@ -15,26 +15,35 @@ const Todolist = () => {
   })
   // Hook useArray is injecting generic behavior inside the component
   const tasks = useArray([])
-  // Destructure the useArray hook functions without parameter directly here
-  const {clear} = tasks
+  // Destructure the useArray hook functions and vars.
+  const {
+    add,
+    clear,
+    removeById,
+    replaceByIdAndValue,
+    value
+  } = tasks
+
   // Add side effect that is being executed when tasks is updated
   // useEffect(() => console.log('New state of tasks: ', tasks), [tasks])
 
-  const addTask = title => tasks.add(createTask(title))
+  const addTask = title => add(createTask(title))
 
   return <TodolistContainer>
     <Input onSubmit={addTask}/>
     {
-      tasks.value.length > 0 &&
-      map(tasks.value, task =>
+      value.length > 0 &&
+      // Using a meaningful name for the map callback empower readability
+      map(value, task =>
         <Task
           {...task}
-          complete={() => tasks.replaceByIdAndValue(task.id, {...task, completed: !task.completed})}
-          remove={() => tasks.removeById(task.id)}
+          complete={() => replaceByIdAndValue(task.id, {...task, completed: !task.completed})}
+          remove={() => removeById(task.id)}
           key={task.id}
         />
       )
     }
+    {/*Here we can pass clear function directly here without creating an anonymous function.*/}
     <button onClick={clear}>Clear</button>
   </TodolistContainer>
 }

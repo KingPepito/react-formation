@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import PropTypes from "prop-types";
 import TaskContainer from "./styles/TaskContainer";
 import TaskTitle from "./styles/TaskTitle";
 
@@ -30,6 +31,14 @@ const Task = ({complete, completed, id, title, remove}) => {
     <TaskTitle onClick={completeSelf}>{title}</TaskTitle>
     <button onClick={removeSelf}>X</button>
   </TaskContainer>
+}
+
+Task.propTypes = {
+  complete: PropTypes.func,
+  completed: PropTypes.bool,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  remove: PropTypes.func,
 }
 
 export default Task
