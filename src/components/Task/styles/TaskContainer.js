@@ -8,7 +8,7 @@ const TaskContainer = styled.div`
   justify-content: space-between;
   margin: 8px;
   cursor: pointer;
-  background-color: #f29400;
+  background-color: ${({theme}) => theme.colors.attineos};
   border-radius: 2px;
   
   ${TaskTitle} {
