@@ -6,7 +6,7 @@ import Task from "../Task";
 import useArray from "../hooks/useArray";
 import TodolistContainer from "./styles/TodolistContainer";
 
-const Todolist = () => {
+const TodoList = () => {
 
   const createTask = title => ({
     title,
@@ -48,4 +48,4 @@ const Todolist = () => {
   </TodolistContainer>
 }
 
-export default Todolist
+export default TodoList

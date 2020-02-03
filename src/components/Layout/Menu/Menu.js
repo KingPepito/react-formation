@@ -1,26 +1,27 @@
 import React from 'react';
-import { bool } from 'prop-types';
-import { StyledMenu } from './Menu.styled';
+import {bool} from 'prop-types';
+import {StyledMenu} from './Menu.styled';
+import StyledLink from "../../StyledLink";
 
-const Menu = ({ open, ...props }) => {
-  
+const Menu = ({open, ...props}) => {
+
   const isHidden = !!open;
   const tabIndex = isHidden ? 0 : -1;
 
   return (
     <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-      <a href="/" tabIndex={tabIndex}>
+      <StyledLink to="/" tabIndex={tabIndex}>
         <span aria-hidden="true">💁🏻‍♂️</span>
-        Page 1
-      </a>
-      <a href="/" tabIndex={tabIndex}>
+        Home
+      </StyledLink>
+      <StyledLink to="/overview" tabIndex={tabIndex}>
         <span aria-hidden="true">💸</span>
-        Page 2
-        </a>
-      <a href="/" tabIndex={tabIndex}>
+        Overview
+      </StyledLink>
+      <StyledLink to="/todolist/sample%20List" tabIndex={tabIndex}>
         <span aria-hidden="true">📩</span>
-        Page 3
-        </a>
+        Todolist sample
+      </StyledLink>
     </StyledMenu>
   )
 }
