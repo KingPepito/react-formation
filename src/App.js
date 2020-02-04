@@ -12,6 +12,7 @@ import theme from './theme'
 import HomePage from "./pages/HomePage";
 import OverviewPage from "./pages/OverviewPage";
 import TodoListPage from "./pages/TodoListPage";
+import {PrivateRoute} from "./helpers/PrivateRoute";
 
 // Entry point
 function App() {
@@ -24,12 +25,8 @@ function App() {
               <Switch>
                 {/* A <Switch> looks through its children <Route>s and
                 renders the first one that matches the current URL. */}
-                <Route path="/todolist/:id">
-                  <TodoListPage/>
-                </Route>
-                <Route path="/overview">
-                  <OverviewPage/>
-                </Route>
+                <PrivateRoute path="/todolist/:id" component={TodoListPage}/>
+                <PrivateRoute path="/overview" component={OverviewPage}/>
                 <Route path="/">
                   <HomePage/>
                 </Route>
