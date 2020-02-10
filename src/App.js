@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom"
 import FixedMenuLayout from "./components/Layout";
 import theme from './theme'

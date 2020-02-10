@@ -1,13 +1,12 @@
 import React from 'react'
 import {Redirect, Route} from 'react-router-dom'
-import {getCookie} from "./getCookie";
 // This is only a sample of helper that handle private route
 // A production app might need more security as JWT token server side.
 export const PrivateRoute = ({component: Component, ...rest}) =>
   <Route
     {...rest}
     render={
-      props => getCookie('idUser') ?
+      props => localStorage.getItem('TOKEN') ?
         <Component {...props}/>
         : <Redirect to={{
           pathname: '/',

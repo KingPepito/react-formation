@@ -5,8 +5,10 @@ import HomeContainer from "./styles/HomeContainer";
 import LoginForm from "./styles/LoginForm";
 import {validateEmail} from "../../helpers/isEmailValid";
 import Input from "../../components/Input";
+import {connect} from "react-redux";
+import {setListTodos, setToken, setUser} from "../../redux/actions";
 
-const Home = () => {
+const Home = ({setListTodos, setToken, setUser}) => {
   const history = useHistory();
   // Creating a ref for each input in order to get the value of the input when submitting the form.
   // The related react form is non-controlled.
@@ -45,14 +47,22 @@ const Home = () => {
       email,
       password // same as password: password
     }).then(res => {
-      // Add session cookie
-      document.cookie = `idUser=${res.data.token}; max-age=7200`
+      // Set token using special action. For more details check https://michaelwashburnjr.com/2017/11/21/best-way-to-store-tokens-redux/
+      setToken(res.data.token)
+      // THEN update the state of the app
+      // Get Fake user data
+      axios.get('https://reqres.in/api/users/2').then( res => {
+        setUser(res.data)
+      })
       // Go to sample Overview page using history react-router hook
       history.push('/overview')
+      // Load the todos in the store
+      axios.get("https://reqres.in/api/todos", {}).then(res => {
+        setListTodos(res.data)
+      })
     })
       .catch(err => console.log(err))
-    // THEN update the state of the app
-    // ...
+
   }
 
   return <HomeContainer>
@@ -64,4 +74,8 @@ const Home = () => {
     </LoginForm>
   </HomeContainer>
 }
-export default Home
+
+export default connect(
+  null,
+  { setListTodos, setToken, setUser }
+)(Home);
