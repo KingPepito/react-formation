@@ -11,7 +11,7 @@ import theme from './theme'
 import HomePage from "./pages/HomePage";
 import OverviewPage from "./pages/OverviewPage";
 import TodoListPage from "./pages/TodoListPage";
-import {PrivateRoute} from "./helpers/PrivateRoute";
+import PrivateRoute from "./helpers/PrivateRoute";
 
 // Entry point
 function App() {

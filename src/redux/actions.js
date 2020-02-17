@@ -1,4 +1,4 @@
-import {SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN} from "./actionTypes";
+import {LOG_OUT, SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN} from "./actionTypes";
 
 export const setListTodos = dataTodos => {
   return {
@@ -22,5 +22,15 @@ export const setToken = token => {
   return {
     type: RECEIVE_TOKEN,
     token
+  }
+};
+
+export const logout = () => {
+  // Remove token saved in localstorage
+  localStorage.removeItem('TOKEN')
+  // Force user to reconnect
+  window.location.reload()
+  return {
+    type: LOG_OUT,
   }
 };

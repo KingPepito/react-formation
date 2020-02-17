@@ -2,12 +2,14 @@ import React from 'react';
 import {bool} from 'prop-types';
 import {StyledMenu} from './Menu.styled';
 import StyledLink from "../../StyledLink";
+import {useDispatch} from "react-redux";
+import {logout} from "../../../redux/actions";
 
 const Menu = ({open, ...props}) => {
 
   const isHidden = !!open;
   const tabIndex = isHidden ? 0 : -1;
-
+  const dispatch = useDispatch()
   return (
     <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
       <StyledLink to="/" tabIndex={tabIndex}>
@@ -22,6 +24,7 @@ const Menu = ({open, ...props}) => {
         <span aria-hidden="true">📩</span>
         Todolist sample
       </StyledLink>
+      <button onClick={() => dispatch(logout())}>Logout</button>
     </StyledMenu>
   )
 }

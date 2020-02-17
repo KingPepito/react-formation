@@ -2,7 +2,7 @@ import React from 'react'
 import {Redirect, Route} from 'react-router-dom'
 // This is only a sample of helper that handle private route
 // A production app might need more security as JWT token server side.
-export const PrivateRoute = ({component: Component, ...rest}) =>
+const PrivateRoute = ({component: Component, ...rest}) =>
   <Route
     {...rest}
     render={
@@ -15,3 +15,5 @@ export const PrivateRoute = ({component: Component, ...rest}) =>
         }}/>
     }
   />
+
+export default PrivateRoute
