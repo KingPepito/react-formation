@@ -1,34 +1,32 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actionTypes";
+import {ADD_TODO, SET_TASKS, SET_TASKS_LOADING, TOGGLE_TODO} from "../actionTypes";
 
 const initialState = {};
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ADD_TODO: {
-      const { id, content } = action.payload;
+    // You want to handle the action add, toggle and remove task here
+    // case ADD_TASK: {
+    //   return {
+    //     ...state,
+    //   };
+    // }
+    // case TOGGLE_TASK: {
+    //   return {
+    //     ...state,
+    //   };
+    // }
+    case SET_TASKS: {
+      const { tasks } = action.payload;
       return {
         ...state,
-        allIds: [...state.allIds, id],
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            content,
-            completed: false
-          }
-        }
+        tasks
       };
     }
-    case TOGGLE_TODO: {
-      const { id } = action.payload;
+    case SET_TASKS_LOADING: {
+      const { isLoading } = action.payload;
       return {
         ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            ...state.byIds[id],
-            completed: !state.byIds[id].completed
-          }
-        }
+        isLoading
       };
     }
     default:

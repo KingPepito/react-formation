@@ -1,4 +1,5 @@
-import {LOG_OUT, SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN} from "./actionTypes";
+import {LOG_OUT, SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN, SET_TASKS_LOADING, SET_TASKS} from "./actionTypes";
+import {getFakeTodosPromise} from "../helpers/getFakeTodosPromise";
 
 export const setListTodos = dataTodos => {
   return {
@@ -8,6 +9,46 @@ export const setListTodos = dataTodos => {
     }
   }
 };
+
+export const setTasksLoading = (isLoading) => ({
+  type: SET_TASKS_LOADING,
+  payload: {
+    isLoading
+  }
+})
+
+export const setTasks = (dataTasks) => ({
+  type: SET_TASKS,
+  payload: {
+    tasks: [...dataTasks]
+  }
+})
+
+export const clearTasks = () => ({
+  type: SET_TASKS,
+  payload: {
+    tasks: []
+  }
+})
+
+
+export const fetchTasks = () => {
+  return function (dispatch){
+    dispatch(setTasksLoading(true))
+    // Faking a API call to load tasks from a todoList
+    getFakeTodosPromise()
+      .then(response => {
+        dispatch(setTasks(response.data))
+        dispatch(setTasksLoading(false))
+      })
+      .catch(err => {
+        dispatch(clearTasks())
+        alert(err)
+        dispatch(setTasksLoading(false))
+        // Todo: HERE handle notify error
+      })
+  }
+}
 
 export const setUser = dataUser => {
   return {

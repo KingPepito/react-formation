@@ -1,50 +1,57 @@
 import React, {useEffect} from "react"
 import {map} from "lodash"
+import {Ring} from 'react-awesome-spinners'
 import Input from "../Input";
 import {getGUID} from "../../helpers";
 import Task from "../Task";
-import useArray from "../hooks/useArray";
 import TodolistContainer from "./styles/TodolistContainer";
+import {clearTasks, fetchTasks} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
 
 const TodoList = () => {
 
+  // Todo: move createTask in a helper that can be used in addTask action
   const createTask = title => ({
     title,
     completed: false,
     id: getGUID()
   })
   // Hook useArray is injecting generic behavior inside the component
-  const tasks = useArray([])
-  // Destructure the useArray hook functions and vars.
-  const {
-    add,
-    clear,
-    removeById,
-    replaceByIdAndValue,
-    value
-  } = tasks
+  const {isLoading} = useSelector(state => state.tasks)
+  const dispatch = useDispatch()
+  const value = useSelector(state => state.tasks.tasks) || []
 
-  // Add side effect that is being executed when tasks is updated
-  // useEffect(() => console.log('New state of tasks: ', tasks), [tasks])
+  // Fetch tasks after mount
+  useEffect(() => {
+    dispatch(fetchTasks())
 
-  const addTask = title => add(createTask(title))
+    // Clear the tasks state when removing the current todolist from the DOM
+    return () => {
+      dispatch(clearTasks())
+    }
+  }, [])
+
+  // Todo: create a addTask action
+  const addTask = title => console.log('Please use a redux action to handle this')
 
   return <TodolistContainer>
     <Input onSubmit={addTask}/>
-    {
-      value.length > 0 &&
-      // Using a meaningful name for the map callback empower readability
-      map(value, task =>
-        <Task
-          {...task}
-          complete={() => replaceByIdAndValue(task.id, {...task, completed: !task.completed})}
-          remove={() => removeById(task.id)}
-          key={task.id}
-        />
-      )
+    {isLoading ? <Ring/> :
+      value.length > 0 && <>
+        {/*Using a meaningful name for the map callback empower readability*/}
+        {map(value, task =>
+          <Task
+            {...task}
+            // Todo: create complete and remove task actions
+            complete={() => null}
+            remove={() => null}
+            key={task.id}
+          />
+        )}
+        {/*Todo: create clear tasks action.*/}
+        <button onClick={null}>Clear</button>
+      </>
     }
-    {/*Here we can pass clear function directly here without creating an anonymous function.*/}
-    <button onClick={clear}>Clear</button>
   </TodolistContainer>
 }
 
