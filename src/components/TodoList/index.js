@@ -5,7 +5,7 @@ import Input from "../Input";
 import {getGUID} from "../../helpers";
 import Task from "../Task";
 import TodolistContainer from "./styles/TodolistContainer";
-import {clearTasks, fetchTasks} from "../../redux/actions";
+import {clearTasks, fetchTasks, toggleTask} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const TodoList = () => {
@@ -43,7 +43,7 @@ const TodoList = () => {
           <Task
             {...task}
             // Todo: create complete and remove task actions
-            complete={() => null}
+            complete={() => dispatch(toggleTask(task.id))}
             remove={() => null}
             key={task.id}
           />

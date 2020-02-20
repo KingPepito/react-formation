@@ -1,4 +1,4 @@
-import {LOG_OUT, SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN, SET_TASKS_LOADING, SET_TASKS} from "./actionTypes";
+import {LOG_OUT, SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN, SET_TASKS_LOADING, SET_TASKS, TOGGLE_TASK} from "./actionTypes";
 import {getFakeTodosPromise} from "../helpers/getFakeTodosPromise";
 
 export const setListTodos = dataTodos => {
@@ -21,6 +21,14 @@ export const setTasks = (dataTasks) => ({
   type: SET_TASKS,
   payload: {
     tasks: [...dataTasks]
+  }
+})
+
+export const toggleTask = (id) => (
+{
+  type: TOGGLE_TASK,
+  payload: {
+    id: id
   }
 })
 
