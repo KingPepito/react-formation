@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task Simply test if the component is rendering 1`] = `
+<div
+  className="sc-AykKD WZuFE"
+>
+  <span
+    className="sc-AykKC kDDRHK"
+    onClick={[Function]}
+  >
+    Hey I'm a test task!
+  </span>
+  <button
+    onClick={[Function]}
+  >
+    X
+  </button>
+</div>
+`;
