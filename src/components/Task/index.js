@@ -29,7 +29,7 @@ const Task = ({complete, completed, id, title, remove}) => {
   return <TaskContainer completed={completed}>
     {console.log('Rendering the Task')}
     <TaskTitle onClick={completeSelf}>{title}</TaskTitle>
-    <button onClick={removeSelf}>X</button>
+    <button onClick={removeSelf} data-test='remove-button-task-test'>X</button>
   </TaskContainer>
 }
 
