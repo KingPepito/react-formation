@@ -6,4 +6,4 @@ export const SET_LISTS_TODOS = "SET_LISTS_TODOS";
 export const SET_TASKS = "SET_TASKS";
 export const SET_TASKS_LOADING = "SET_TASKS_LOADING";
 export const SET_USER = "SET_USER";
-export const TOGGLE_TODO = "TOGGLE_TODO";
+export const TOGGLE_TASK = "TOGGLE_TODO";
