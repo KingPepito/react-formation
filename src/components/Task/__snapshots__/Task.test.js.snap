@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Task Simply test if the component is rendering 1`] = `
+exports[`Task snapshot test. Simply test if the component is rendering 1`] = `
 <div
   className="sc-AykKD WZuFE"
 >
@@ -11,6 +11,7 @@ exports[`Task Simply test if the component is rendering 1`] = `
     Hey I'm a test task!
   </span>
   <button
+    data-test="remove-button-task-test"
     onClick={[Function]}
   >
     X
