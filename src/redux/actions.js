@@ -1,5 +1,16 @@
-import {LOG_OUT, SET_LISTS_TODOS, SET_USER, RECEIVE_TOKEN, SET_TASKS_LOADING, SET_TASKS} from "./actionTypes";
+import {
+  LOG_OUT,
+  SET_LISTS_TODOS,
+  SET_USER,
+  RECEIVE_TOKEN,
+  SET_TASKS_LOADING,
+  SET_TASKS,
+  ADD_TASK,
+  REPLACE_TASK,
+  REMOVE_TASK,
+} from "./actionTypes";
 import {getFakeTodosPromise} from "../helpers/getFakeTodosPromise";
+import getGUID from "../helpers/getGUID";
 
 export const setListTodos = dataTodos => {
   return {
@@ -17,6 +28,32 @@ export const setTasksLoading = (isLoading) => ({
   }
 })
 
+export const addTaskForTitle = title => ({
+  type: ADD_TASK,
+  payload: {
+    newTask: {
+      title,
+      completed: false,
+      id: getGUID(),
+    },
+  }
+})
+
+export const replaceTaskForIdAndValue = (idToReplace, newValue) => ({
+  type: REPLACE_TASK,
+  payload: {
+    idToReplace,
+    newValue
+  }
+})
+
+export const removeTaskById = idToRemove => ({
+  type: REMOVE_TASK,
+  payload: {
+    idToRemove,
+  }
+})
+
 export const setTasks = (dataTasks) => ({
   type: SET_TASKS,
   payload: {
@@ -30,7 +67,6 @@ export const clearTasks = () => ({
     tasks: []
   }
 })
-
 
 export const fetchTasks = () => {
   return function (dispatch){

@@ -2,20 +2,18 @@ import React, {useEffect} from "react"
 import {map} from "lodash"
 import {Ring} from 'react-awesome-spinners'
 import Input from "../Input";
-import {getGUID} from "../../helpers";
 import Task from "../Task";
 import TodolistContainer from "./styles/TodolistContainer";
-import {clearTasks, fetchTasks} from "../../redux/actions";
+import {
+  addTaskForTitle,
+  clearTasks,
+  fetchTasks,
+  removeTaskById,
+  replaceTaskForIdAndValue,
+} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 const TodoList = () => {
-
-  // Todo: move createTask in a helper that can be used in addTask action
-  const createTask = title => ({
-    title,
-    completed: false,
-    id: getGUID()
-  })
   // Hook useArray is injecting generic behavior inside the component
   const {isLoading} = useSelector(state => state.tasks)
   const dispatch = useDispatch()
@@ -31,8 +29,7 @@ const TodoList = () => {
     }
   }, [])
 
-  // Todo: create a addTask action
-  const addTask = title => console.log('Please use a redux action to handle this')
+  const addTask = title => dispatch(addTaskForTitle(title))
 
   return <TodolistContainer>
     <Input onSubmit={addTask}/>
@@ -42,14 +39,12 @@ const TodoList = () => {
         {map(value, task =>
           <Task
             {...task}
-            // Todo: create complete and remove task actions
-            complete={() => null}
-            remove={() => null}
+            complete={() => dispatch(replaceTaskForIdAndValue(task.id, {...task, completed: !task.completed}))}
+            remove={() => dispatch(removeTaskById(task.id))}
             key={task.id}
           />
         )}
-        {/*Todo: create clear tasks action.*/}
-        <button onClick={null}>Clear</button>
+        <button onClick={() => dispatch(clearTasks())}>Clear</button>
       </>
     }
   </TodolistContainer>

@@ -1,4 +1,4 @@
-export const ADD_TODO = "ADD_TODO";
+export const ADD_TASK = "ADD_TASK";
 export const LOG_OUT = "LOG_OUT";
 export const ON_INIT = "ON_INIT";
 export const RECEIVE_TOKEN = "RECEIVE_TOKEN";
@@ -6,4 +6,5 @@ export const SET_LISTS_TODOS = "SET_LISTS_TODOS";
 export const SET_TASKS = "SET_TASKS";
 export const SET_TASKS_LOADING = "SET_TASKS_LOADING";
 export const SET_USER = "SET_USER";
-export const TOGGLE_TODO = "TOGGLE_TODO";
+export const REPLACE_TASK = "REPLACE_TASK";
+export const REMOVE_TASK = "REMOVE_TASK";
