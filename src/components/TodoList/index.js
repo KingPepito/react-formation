@@ -10,7 +10,7 @@ import {
   fetchTasks,
   removeTaskById,
   replaceTaskForIdAndValue,
-} from "../../redux/actions";
+} from "../../redux/actions/index";
 import {useDispatch, useSelector} from "react-redux";
 
 const TodoList = () => {

@@ -1,4 +1,4 @@
-import {notifyForTypeAndMessage} from "../actions";
+import {notifyForTypeAndMessage} from "../../redux/actions";
 // This middleware is providing a notification system available on every potential action dispatched.
 export const notify = store => next => action => {
   // Checking if the action dispatched contains notification data
