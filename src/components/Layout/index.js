@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import {useOnClickOutside} from "../hooks/useOnClickOutside";
 import FooterContainer from "./styles/FooterContainer";
 import FooterList from "./styles/FooterList";
+import NotifyPanel from "../NotifyPanel";
 
 const FixedMenuLayout = ({children}) => {
   const [open, setOpen] = useState(false);
@@ -25,6 +26,7 @@ const FixedMenuLayout = ({children}) => {
         <a href='/test'>Contact us</a>
       </FooterList>
     </FooterContainer>
+    <NotifyPanel/>
   </>
 }
 

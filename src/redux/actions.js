@@ -8,9 +8,15 @@ import {
   ADD_TASK,
   REPLACE_TASK,
   REMOVE_TASK,
+  SET_NOTIFICATION,
+  CLEAR_NOTIFICATION,
 } from "./actionTypes";
 import {getFakeTodosPromise} from "../helpers/getFakeTodosPromise";
 import getGUID from "../helpers/getGUID";
+import * as notifications from "../helpers/notificationTypes";
+import {find} from "lodash";
+import {NotificationTypes} from "../helpers/notificationTypes";
+import {ERROR} from "../helpers/notificationTypes";
 
 export const setListTodos = dataTodos => {
   return {
@@ -58,7 +64,29 @@ export const setTasks = (dataTasks) => ({
   type: SET_TASKS,
   payload: {
     tasks: [...dataTasks]
+  },
+  notification: {
+    type: notifications.DEFAULT,
+    message: "Tasks have correctly been loaded"
   }
+})
+
+export const notifyForTypeAndMessage = (type, message) => (dispatch) => {
+  const {color} = find(NotificationTypes, el => el.type === type)
+  dispatch({
+    type: SET_NOTIFICATION,
+    payload: {
+      color,
+      message,
+      type,
+    }
+  })
+
+  setTimeout(() => dispatch(clearNotification()), 3000)
+}
+
+export const clearNotification = () => ({
+  type: CLEAR_NOTIFICATION,
 })
 
 export const clearTasks = () => ({
@@ -69,7 +97,7 @@ export const clearTasks = () => ({
 })
 
 export const fetchTasks = () => {
-  return function (dispatch){
+  return function (dispatch) {
     dispatch(setTasksLoading(true))
     // Faking a API call to load tasks from a todoList
     getFakeTodosPromise()
@@ -79,9 +107,8 @@ export const fetchTasks = () => {
       })
       .catch(err => {
         dispatch(clearTasks())
-        alert(err)
         dispatch(setTasksLoading(false))
-        // Todo: HERE handle notify error
+        dispatch(notifyForTypeAndMessage(ERROR, 'An error occured while loading your todos, please try again'))
       })
   }
 }
@@ -91,6 +118,10 @@ export const setUser = dataUser => {
     type: SET_USER,
     payload: {
       ...dataUser.data
+    },
+    notification: {
+      type: notifications.VALIDATION,
+      message: "You have been successfully connected!"
     }
   }
 };

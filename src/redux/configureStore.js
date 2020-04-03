@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import rootReducer from './reducers'
 import {persistToken} from "./middleware";
 import ReduxThunk from 'redux-thunk'
+import {notify} from "./middleware/notifyMiddleware";
 
 const persistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = createStore(persistedReducer, compose(
   applyMiddleware(ReduxThunk),
   applyMiddleware(persistToken),
+  applyMiddleware(notify),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
 )
