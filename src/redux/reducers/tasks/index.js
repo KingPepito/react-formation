@@ -1,5 +1,5 @@
 import {filter, map} from "lodash";
-import {ADD_TASK, SET_TASKS, SET_TASKS_LOADING, REPLACE_TASK, REMOVE_TASK} from "../actionTypes";
+import {ADD_TASK, SET_TASKS, SET_TASKS_LOADING, REPLACE_TASK, REMOVE_TASK} from "../../actionTypes";
 
 const initialState = {tasks: []};
 
