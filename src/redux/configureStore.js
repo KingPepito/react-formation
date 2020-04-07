@@ -11,12 +11,13 @@ const persistConfig = {
   storage,
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
+// List of middlewares used by the store
+export const middlewares = [ReduxThunk, persistToken, notify]
 // Create store and bind redux devtools extension window var, compose the multiple middleware as applyMiddleware receive only one enhancer
 export const store = createStore(persistedReducer, compose(
-  applyMiddleware(ReduxThunk),
-  applyMiddleware(persistToken),
-  applyMiddleware(notify),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(...middlewares),
+  // Use devtools middleware conditionally as test are not run on a browser with the extension installed.
+  ...(window.__REDUX_DEVTOOLS_EXTENSION__ ? [window.__REDUX_DEVTOOLS_EXTENSION__()] : [])
   )
 )
 export const persistor = persistStore(store)
