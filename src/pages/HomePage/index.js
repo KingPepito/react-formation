@@ -6,7 +6,7 @@ import LoginForm from "./styles/LoginForm";
 import {validateEmail} from "../../helpers/isEmailValid";
 import Input from "../../components/Input";
 import {useDispatch} from "react-redux";
-import {setListTodos, setToken, setUser} from "../../redux/actions";
+import {fetchTodos, setToken, setUser} from "../../redux/actions";
 
 const Home = () => {
   const history = useHistory();
@@ -60,9 +60,7 @@ const Home = () => {
       // Go to sample Overview page using history react-router hook
       history.push('/overview')
       // Load the todos in the store
-      axios.get("https://reqres.in/api/todos", {}).then(res => {
-        dispatch(setListTodos(res.data))
-      })
+      dispatch(fetchTodos())
     })
       .catch(err => console.log(err))
 

@@ -53,7 +53,7 @@ class TodolistClass extends Component {
       {
         tasks.length > 0 &&
         map(tasks, task =>
-          <Task {...task} complete={this.completeTaskForId} remove={this.removeTaskForId}/>
+          <Task key={task.id} {...task} complete={this.completeTaskForId} remove={this.removeTaskForId}/>
         )
       }
     </div>

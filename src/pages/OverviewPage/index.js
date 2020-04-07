@@ -13,7 +13,7 @@ const OverviewPage = () => {
     <h2>Here you can find your Todo lists:</h2>
     <ul>
       {
-        map(todos, todo => <StyledLink to={`/todolist/${todo.name}`}><li>{todo.name}</li></StyledLink>)
+        map(todos, todo => <StyledLink key={todo.name} to={`/todolist/${todo.name}`}><li>{todo.name}</li></StyledLink>)
       }
     </ul>
   </>

@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
     case SET_LISTS_TODOS: {
       return {
         ...state,
-        todos: action.payload
+        todos: [...action.payload.list]
       };
     }
     default:

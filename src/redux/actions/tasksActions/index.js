@@ -4,12 +4,12 @@ import {
   ADD_TASK,
   REPLACE_TASK,
   REMOVE_TASK,
-} from "../actionTypes";
-import {getFakeTodosPromise} from "../../helpers/getFakeTodosPromise";
-import getGUID from "../../helpers/getGUID";
-import * as notifications from "../../helpers/notificationTypes";
-import {ERROR} from "../../helpers/notificationTypes";
-import {notifyForTypeAndMessage} from "./notificationActions";
+} from "../../actionTypes";
+import {getFakeTodosPromise} from "../../../helpers/getFakeTodosPromise";
+import getGUID from "../../../helpers/getGUID";
+import * as notifications from "../../../helpers/notificationTypes";
+import {ERROR} from "../../../helpers/notificationTypes";
+import {notifyForTypeAndMessage} from "../notificationActions";
 
 export const setTasksLoading = (isLoading) => ({
   type: SET_TASKS_LOADING,
