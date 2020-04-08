@@ -6,6 +6,7 @@ exports[`Task snapshot test. Simply test if the component is rendering 1`] = `
 >
   <span
     className="sc-AykKC kDDRHK"
+    data-testid="title-task-test"
     onClick={[Function]}
   >
     Hey I'm a test task!

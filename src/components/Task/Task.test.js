@@ -4,7 +4,7 @@ import {shallow} from "enzyme";
 import TaskTitle from "./styles/TaskTitle";
 // Here we using a class version of Task. It is because Enzyme does not support manipulation of hooks yet.
 // It might be a serious problem to consider when choosing the utilities lib for your React app.
-import TaskClass from "./TaskClass";
+import TaskClass, {removeButtonTestId} from "./TaskClass";
 
 // We simply testing that our component Task is rendering here, snapshot testing might also include more features...
 // Each time we run a snapshot test, it will create a snapshot files inside __snapshots__.
@@ -39,7 +39,7 @@ describe("Task DOM testing with Enzyme.", () => {
     // This will prove that our Task component contains a Button.
     expect(componentToTest.find('button'))
     // But we might want to be more specific by using a custom attribute to identify the node we are looking for.
-    expect(componentToTest.find("[data-test='remove-button-task-test']"))
+    expect(componentToTest.find(`[data-testid='${removeButtonTestId}']`))
   })
   it('should render a title with the expected text', () => {
     // We might find an imported sub-component like this:

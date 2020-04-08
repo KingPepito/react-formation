@@ -26,11 +26,14 @@ class TaskClass extends Component {
     const {completed} = this.state
 
     return <TaskContainer completed={completed}>
-      <TaskTitle onClick={this.completeSelf}>{title}</TaskTitle>
-      <button onClick={this.removeSelf} data-test='remove-button-task-test'>X</button>
+      <TaskTitle onClick={this.completeSelf} data-testid={titleTestId}>{title}</TaskTitle>
+      <button onClick={this.removeSelf} data-test={removeButtonTestId}>X</button>
     </TaskContainer>
   }
 }
+
+export const titleTestId = "title-task-test"
+export const removeButtonTestId = "remove-button-task-test"
 
 TaskClass.propTypes = {
   complete: PropTypes.func,

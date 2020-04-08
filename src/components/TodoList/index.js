@@ -13,7 +13,7 @@ import {
 } from "../../redux/actions/index";
 import {useDispatch, useSelector} from "react-redux";
 
-const TodoList = () => {
+const TodoList = ({fetchSample = true}) => {
   // Hook useArray is injecting generic behavior inside the component
   const {isLoading} = useSelector(state => state.tasks)
   const dispatch = useDispatch()
@@ -21,8 +21,8 @@ const TodoList = () => {
 
   // Fetch tasks after mount
   useEffect(() => {
-    dispatch(fetchTasks())
-
+    // For the purpose of our exercise we might choose to fetch a sample or not
+    fetchSample && dispatch(fetchTasks())
     // Clear the tasks state when removing the current todolist from the DOM
     return () => {
       dispatch(clearTasks())
@@ -32,7 +32,7 @@ const TodoList = () => {
   const addTask = title => dispatch(addTaskForTitle(title))
 
   return <TodolistContainer>
-    <Input onSubmit={addTask}/>
+    <Input onSubmit={addTask} placeholder="Add a new task"/>
     {isLoading ? <Ring/> :
       value.length > 0 && <>
         {/*Using a meaningful name for the map callback empower readability*/}

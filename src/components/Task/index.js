@@ -28,10 +28,13 @@ const Task = ({complete, completed, id, title, remove}) => {
 
   return <TaskContainer completed={completed}>
     {console.log('Rendering the Task')}
-    <TaskTitle onClick={completeSelf}>{title}</TaskTitle>
-    <button onClick={removeSelf} data-test='remove-button-task-test'>X</button>
+    <TaskTitle onClick={completeSelf} data-testid={titleTestId}>{title}</TaskTitle>
+    <button onClick={removeSelf} data-testid={removeButtonTestId}>X</button>
   </TaskContainer>
 }
+
+export const titleTestId = "title-task-test"
+export const removeButtonTestId = "remove-button-task-test"
 
 Task.propTypes = {
   complete: PropTypes.func,
